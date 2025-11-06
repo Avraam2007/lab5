@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма</title>
+    <link rel="shortcut icon" href="./materials/Images/resume.png" type="image/x-icon">
+    <meta name = "keywords" content = "Собака, dog, form, форма"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&family=Pacifico&family=Ubuntu&display=swap" rel="stylesheet">
+
+</head>
+<body bgcolor="wheat">
+    <header>
+        <img width="100px" src="./materials/Images/dog.png" alt="dog.png" class="logo">
+        <nav class="list">
+            <li class="list-item">
+                <a href="./index.html" class="list-link">
+                    <p class="link-text">Головна</p>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="./history.html" class="list-link">
+                    <p class="link-text">Історія</p>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="./reasons.html" class="list-link">
+                    <p class="link-text">Причини</p>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="./form.html" class="list-link">
+                    <p class="link-text">Форма</p>
+                </a>
+            </li>
+        </nav>
+    </header>
+    <main>
+        <a name=start></a>
+        <h1 align="center" class="title">Форма</h1>
+        <h2 align="center" class="subtitle">Заповніть форму, якщо виникли певні запитання</h2>
+        <form class="forms" id="form">
+            <label for="first-name-type">
+                <p class="labels">Ім'я</p>
+                <input type="text" name="first-name" class="inputs" id="first-name-type" placeholder="Введіть ім'я" minlength="2" required />
+            </label>
+            <label for="last-name-type">
+                <p class="labels">Прізвище</p>
+                <input type="text" name="last-name" class="inputs" id="last-name-type" placeholder="Введіть прізвище" minlength="2" required />
+            </label>
+            <label for="email-type">
+                <p class="labels">E-mail</p>
+                <input type="email" name="email" class="inputs" id="email-type" placeholder="Введіть e-mail" pattern="^\\S+@\\S+\\.\\S+$" required />
+            </label>
+            <label for="phone-number-type">
+                <p class="labels">Номер телефону</p>
+                <input type="tel" name="phone-number" class="inputs" id="phone-number-type" placeholder="Введіть номер телефону" required />
+            </label>
+            <label for="description-type">
+                <p class="labels">Питання, побажання, скарги</p>
+                <textarea name="description" class="textarea" id="description-type" placeholder="Опис" rows="5" cols="40" minlength="11" required></textarea>
+            </label>
+            <input type="submit" value="OK" class="submit" id="submit">
+        </form>
+        <div class="start">
+            <a class="start-link" href=#start>Start</a>
+        </div>
+    </main>
+    <footer>
+        <h1 class="links">Сайт про собак</h1>
+        <a class="links" href=#start>Start</a>
+        <br>
+        <a class="links" href="tel:+380229994445">Телефон: +380229994445</a>
+        <br>
+        <a class="links" href="mailto:example@gmail.com?cc=example@gmail.com&bcc=example@gmail.comsubject=Відгук&body=Текст листа">Надіслати листа</a>
+    </footer>
+</body>
+</html>
