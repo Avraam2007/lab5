@@ -1,3 +1,62 @@
+$footer_color: #656565;
+$button_color: #4ccc53;
+$button_text_color: #fff;
+$hover_button_text_color: lighten($color: $button_text_color, $amount: 100);
+$footer_link_color: #dadada;
+$hover_color: #a000ff;
+$focus_color: #ff0000;
+
+@mixin flex($jc, $fd) {
+    display: flex;
+    flex-direction: $fd;
+    justify-content: $jc;
+    align-items: center;
+}
+
+@mixin sizes($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin text($font_name, $fst, $fs, $ta : left) {
+    font-family: $font-name, $fst;
+    font-size: $fs;
+    text-align: $ta;
+}
+
+@mixin button {
+    .start {
+        background-color: $button_color;
+        border-radius: 5px; 
+        display: block;
+        margin: 50px auto;
+        @include sizes(100px, 50px);
+        position: relative;
+        transition: 0.5s;
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.2);
+            color: $hover_button_text_color !important; 
+            background-color: darken($color: $button_color, $amount: 20);
+        }
+    }
+
+    .start-link {
+        position: absolute;              
+        top: 50%;  
+        left: 50%;                       
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
+        color: $button_text_color;
+
+        &:hover {
+            color: $hover_button_text_color;
+        }
+    }
+}
+
+
 * {
     margin: 0;
     box-sizing: border-box;
@@ -8,14 +67,20 @@ a {
     color: inherit;
     font-family: 'Montserrat';
     transition: 0.5s;
-}
 
-a:hover {
-    color: #a000ff;
-    cursor: pointer;
-}
-a:focus {
-    color: #ff0000;
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:not(.start-link, .footer-link){
+        &:hover {
+            color: $hover_color;
+        } 
+
+        &:focus {
+            color: $focus_color;
+        }
+    }
 }
 
 body {
@@ -24,51 +89,39 @@ body {
 
 header{
     z-index: 2;
-    width: 100%;
-    height: 100px;
+    @include sizes(100%, 100px);
     background-color: #ffffff;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom: 2px solid #000;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    @include flex(space-evenly, row);
     position: fixed;
-}
 
-.list {
-    width: 500px;
-    list-style-type: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .list {
+        @include sizes(500px, 100%);
+        list-style-type: none;
+        @include flex(space-between, row);
 
-.list-link {
-    transition: 0.5s;
-}
+        .list-link {
+            transition: 0.5s;
 
-.list-link:hover {
-    cursor: pointer;
-    font-size: 1.2em;
-}
+            &:hover {
+                font-size: 1.2em;
+            }
+        }
+    }
 
-.list-link:focus {
-    color: #ff0000;
-}
+    .logo {
+        @include sizes(60px, 60px);
+        border-radius: 35%;
+        padding: 5px;
+        border: 1px solid #000000;
+        transition: 0.5s;
 
-.logo {
-    width: 60px;
-    height: 60px;
-    border-radius: 35%;
-    padding: 5px;
-    border: 1px solid #000000;
-    transition: 0.5s;
-}
-
-.logo:hover{
-    transform: scale(1.5);
+        &:hover {
+            transform: scale(1.5);
+        }
+    }
 }
 
 main {
@@ -77,36 +130,25 @@ main {
     padding-top: 130px;
     padding-bottom: 50px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(space-between, column);
 }
 
 .title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 48px;
-    text-align: center;
+    @include text('Montserrat', sans-serif, 48px, center);
 }
 
 .subtitle {
-    font-family: 'Montserrat', sans-serif;
+    @include text('Montserrat', sans-serif, 24px, center);
     font-style: italic;
-    font-size: 24px;
-    text-align: center;
 }
 
 form {
-    width: 40%;
+    @include sizes(40%, max-content);
     min-width: 450px;
-    height: max-content;
     margin: 0 auto;
 
-    display: flex;
+    @include flex(space-between, column);
     gap: 5px;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .label {
@@ -115,18 +157,16 @@ form {
 
 .labels {
     margin: 10px 0 2px 10px;
-    font-family: 'Montserrat', sans-serif;
+    @include text('Montserrat', sans-serif, 16px, );
 }
 
 .inputs {
+    @include sizes(100%, 35px);
     border-radius: 5px; 
-    width: 100%;
     min-width: 400px;
-    height: 35px;
     padding: 0 10px;
 
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+    @include text('Montserrat', sans-serif, 16px, );
 }
 
 .inputs:invalid {
@@ -139,50 +179,21 @@ form {
     width: 100%;
     min-width: 400px;
     resize: vertical;
-    font-family: 'Montserrat', sans-serif;
+    @include text('Montserrat', sans-serif, 16px, );
 }
 
 .submit {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    width:10%;
+    @include sizes(10%, 25px);
+    @include text('Montserrat', sans-serif, 16px, center);
     min-width: 60px;
-    height: 25px;
     margin: 10px 45%;
 }
 
-.start {
-    background-color:aquamarine;
-    border-radius: 5px; 
-    display: block;
-    margin: 50px auto;
-    width: 100px;
-    height: 50px;
-    position: relative;
-    transition: 0.5s;
-}
-
-.start-link {
-    position: absolute;              
-    top: 50%;  
-    left: 50%;                       
-    transform: translate(-50%, -50%);
-    transition: 0.5s;
-}
-
-.start-link:hover {
-    color: #fff;
-}
-
-.start:hover {
-    transform: scale(1.2);
-    color: #fff;
-    background-color: #47c44d;
-}
+@include button;
 
 footer {
-    background-color: #656565;
-    height: 150px;
+    background-color: $footer_color;
+    @include sizes(100%, 150px);
     padding: 20px 20px 0px;
 }
 
@@ -196,34 +207,18 @@ footer {
 }
 
 .footer-link {
-    color: #dadada;
-}
+    color: $footer_link_color;
 
-.footer-link:hover {
-    color: #ffffff;
+    &:hover {
+        color: lighten($color: $footer_link_color, $amount: 100);
+    }
 }
 
 @media screen and (max-width:768px) {
     header{
-        width: 100%;
         height: 75px;
-        background-color: #ffffff;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        border-bottom: 2px solid #000;
     
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        position: fixed;
-    }
-    
-    .list {
-        width: 500px;
-        list-style-type: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flex(space-around, row);
     }
     
     .list-link {
@@ -285,7 +280,6 @@ footer {
     }
 
     .start {
-        background-color:aquamarine;
         border-radius: 5px; 
         display: block;
         margin: 40px auto;
@@ -293,30 +287,12 @@ footer {
         height: 40px;
         position: relative;
         transition: 0.5s;
-    }
-    
-    .start-link {
-        position: absolute;              
-        top: 50%;  
-        left: 50%;                       
-        transform: translate(-50%, -50%);
-        transition: 0.5s;
-    }
-    
-    .start:hover {
-        color: #fff;
-        background-color: #47c44d;
-    }
+    }  
 
     footer {
         background-color: #656565;
         height: max-content;
-        padding: 20px 20px 0px;
-    }
-
-    .links {
-        color: #ffffff;
-        font-family: 'Ubuntu', sans-serif;
+       padding: 20px;
     }
 
     .link-container {
@@ -361,14 +337,6 @@ footer {
         transition: 0.5s;
     }
     
-    .list-link:hover {
-        color: #a000ff;
-        cursor: pointer;
-    }
-    .list-link:focus {
-        color: #ff0000;
-    }
-    
     .logo {
         width: 25px;
         height: 25px;
@@ -399,7 +367,6 @@ footer {
     }
     
     .start {
-        background-color:aquamarine;
         border-radius: 5px; 
         display: block;
         margin: 40px auto;
@@ -407,23 +374,5 @@ footer {
         height: 40px;
         position: relative;
         transition: 0.5s;
-    }
-    
-    .start-link {
-        position: absolute;              
-        top: 50%;  
-        left: 50%;                       
-        transform: translate(-50%, -50%);
-        transition: 0.5s;
-    }
-    
-    .start:hover {
-        color: #fff;
-        background-color: #47c44d;
-    }
-    
-    .links {
-        color: white;
-        font-family: 'Ubuntu', sans-serif;
     }
 }
