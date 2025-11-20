@@ -1,10 +1,4 @@
-$footer_color: #656565;
-$button_color: #4ccc53;
-$button_text_color: #fff;
-$hover_button_text_color: lighten($color: $button_text_color, $amount: 100);
-$footer_link_color: #dadada;
-$hover_color: #a000ff;
-$focus_color: #ff0000;
+@use "./shared";
 
 
 @mixin flex($jc, $fd) {
@@ -27,7 +21,7 @@ $focus_color: #ff0000;
 
 @mixin button {
     .start {
-        background-color: $button_color;
+        background-color: shared.$button_color;
         border-radius: 5px; 
         display: block;
         margin: 50px auto;
@@ -38,8 +32,8 @@ $focus_color: #ff0000;
         &:hover {
             cursor: pointer;
             transform: scale(1.2);
-            color: $hover_button_text_color !important; 
-            background-color: darken($color: $button_color, $amount: 20);
+            color: shared.$hover_button_text_color !important; 
+            background-color: darken($color: shared.$button_color, $amount: 20);
         }
     }
 
@@ -49,10 +43,10 @@ $focus_color: #ff0000;
         left: 50%;                       
         transform: translate(-50%, -50%);
         transition: 0.5s;
-        color: $button_text_color;
+        color: shared.$button_text_color;
 
         &:hover {
-            color: $hover_button_text_color;
+            color: shared.$hover_button_text_color;
         }
     }
 }
@@ -74,11 +68,11 @@ a {
 
     &:not(.start-link, .footer-link){
         &:hover {
-            color: $hover_color;
+            color: shared.$hover_color;
         } 
 
         &:focus {
-            color: $focus_color;
+            color: shared.$focus_color;
         }
     }
 }
@@ -181,7 +175,7 @@ article {
 @include button;
 
 footer {
-    background-color: $footer_color;
+    background-color: shared.$footer_color;
     @include sizes(100%, 150px);
     padding: 20px 20px 0px;
 }
@@ -196,10 +190,10 @@ footer {
 }
 
 .footer-link {
-    color: $footer_link_color;
+    color: shared.$footer_link_color;
 
     &:hover {
-        color: lighten($color: $footer_link_color, $amount: 100);
+        color: lighten($color: shared.$footer_link_color, $amount: 100);
     }
 }
 

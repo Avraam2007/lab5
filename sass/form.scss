@@ -1,44 +1,20 @@
-$footer_color: #656565;
-$button_color: #4ccc53;
-$button_text_color: #fff;
-$hover_button_text_color: lighten($color: $button_text_color, $amount: 100);
-$footer_link_color: #dadada;
-$hover_color: #a000ff;
-$focus_color: #ff0000;
-
-@mixin flex($jc, $fd) {
-    display: flex;
-    flex-direction: $fd;
-    justify-content: $jc;
-    align-items: center;
-}
-
-@mixin sizes($width, $height) {
-    width: $width;
-    height: $height;
-}
-
-@mixin text($font_name, $fst, $fs, $ta : left) {
-    font-family: $font-name, $fst;
-    font-size: $fs;
-    text-align: $ta;
-}
+@use "./shared";
 
 @mixin button {
     .start {
-        background-color: $button_color;
+        background-color: shared.$button_color;
         border-radius: 5px; 
         display: block;
         margin: 50px auto;
-        @include sizes(100px, 50px);
+        @include shared.sizes(100px, 50px);
         position: relative;
         transition: 0.5s;
 
         &:hover {
             cursor: pointer;
             transform: scale(1.2);
-            color: $hover_button_text_color !important; 
-            background-color: darken($color: $button_color, $amount: 20);
+            color: shared.$hover_button_text_color !important; 
+            background-color: darken($color: shared.$button_color, $amount: 20);
         }
     }
 
@@ -48,10 +24,10 @@ $focus_color: #ff0000;
         left: 50%;                       
         transform: translate(-50%, -50%);
         transition: 0.5s;
-        color: $button_text_color;
+        color: shared.$button_text_color;
 
         &:hover {
-            color: $hover_button_text_color;
+            color: shared.$hover_button_text_color;
         }
     }
 }
@@ -74,11 +50,11 @@ a {
 
     &:not(.start-link, .footer-link){
         &:hover {
-            color: $hover_color;
+            color: shared.$hover_color;
         } 
 
         &:focus {
-            color: $focus_color;
+            color: shared.$focus_color;
         }
     }
 }
@@ -89,18 +65,18 @@ body {
 
 header{
     z-index: 2;
-    @include sizes(100%, 100px);
+    @include shared.sizes(100%, 100px);
     background-color: #ffffff;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom: 2px solid #000;
-    @include flex(space-evenly, row);
+    @include shared.flex(space-evenly, row);
     position: fixed;
 
     .list {
-        @include sizes(500px, 100%);
+        @include shared.sizes(500px, 100%);
         list-style-type: none;
-        @include flex(space-between, row);
+        @include shared.flex(space-between, row);
 
         .list-link {
             transition: 0.5s;
@@ -112,7 +88,7 @@ header{
     }
 
     .logo {
-        @include sizes(60px, 60px);
+        @include shared.sizes(60px, 60px);
         border-radius: 35%;
         padding: 5px;
         border: 1px solid #000000;
@@ -130,24 +106,24 @@ main {
     padding-top: 130px;
     padding-bottom: 50px;
 
-    @include flex(space-between, column);
+    @include shared.flex(space-between, column);
 }
 
 .title {
-    @include text('Montserrat', sans-serif, 48px, center);
+    @include shared.text('Montserrat', sans-serif, 48px, center);
 }
 
 .subtitle {
-    @include text('Montserrat', sans-serif, 24px, center);
+    @include shared.text('Montserrat', sans-serif, 24px, center);
     font-style: italic;
 }
 
 form {
-    @include sizes(40%, max-content);
+    @include shared.sizes(40%, max-content);
     min-width: 450px;
     margin: 0 auto;
 
-    @include flex(space-between, column);
+    @include shared.flex(space-between, column);
     gap: 5px;
 }
 
@@ -157,16 +133,16 @@ form {
 
 .labels {
     margin: 10px 0 2px 10px;
-    @include text('Montserrat', sans-serif, 16px, );
+    @include shared.text('Montserrat', sans-serif, 16px, );
 }
 
 .inputs {
-    @include sizes(100%, 35px);
+    @include shared.sizes(100%, 35px);
     border-radius: 5px; 
     min-width: 400px;
     padding: 0 10px;
 
-    @include text('Montserrat', sans-serif, 16px, );
+    @include shared.text('Montserrat', sans-serif, 16px, );
 }
 
 .inputs:invalid {
@@ -179,12 +155,12 @@ form {
     width: 100%;
     min-width: 400px;
     resize: vertical;
-    @include text('Montserrat', sans-serif, 16px, );
+    @include shared.text('Montserrat', sans-serif, 16px, );
 }
 
 .submit {
-    @include sizes(10%, 25px);
-    @include text('Montserrat', sans-serif, 16px, center);
+    @include shared.sizes(10%, 25px);
+    @include shared.text('Montserrat', sans-serif, 16px, center);
     min-width: 60px;
     margin: 10px 45%;
 }
@@ -192,8 +168,8 @@ form {
 @include button;
 
 footer {
-    background-color: $footer_color;
-    @include sizes(100%, 150px);
+    background-color: shared.$footer_color;
+    @include shared.sizes(100%, 150px);
     padding: 20px 20px 0px;
 }
 
@@ -207,10 +183,10 @@ footer {
 }
 
 .footer-link {
-    color: $footer_link_color;
+    color: shared.$footer_link_color;
 
     &:hover {
-        color: lighten($color: $footer_link_color, $amount: 100);
+        color: lighten($color: shared.$footer_link_color, $amount: 100);
     }
 }
 
@@ -218,7 +194,7 @@ footer {
     header{
         height: 75px;
     
-        @include flex(space-around, row);
+        @include shared.flex(space-around, row);
     }
     
     .list-link {

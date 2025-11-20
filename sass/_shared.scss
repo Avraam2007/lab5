@@ -1,0 +1,25 @@
+$footer_color: #656565;
+$button_color: #4ccc53;
+$button_text_color: #fff;
+$hover_button_text_color: lighten($color: $button_text_color, $amount: 100);
+$footer_link_color: #dadada;
+$hover_color: #a000ff;
+$focus_color: #ff0000;
+
+@mixin flex($jc, $fd) {
+    display: flex;
+    flex-direction: $fd;
+    justify-content: $jc;
+    align-items: center;
+}
+
+@mixin sizes($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin text($font_name, $fst, $fs, $ta : left) {
+    font-family: $font-name, $fst;
+    font-size: $fs;
+    text-align: $ta;
+}
